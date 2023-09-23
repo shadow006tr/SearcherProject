@@ -1,22 +1,26 @@
 import React from 'react'
-import { EuiInMemoryTable, EuiLink, EuiIcon } from '@elastic/eui'
-import { useNavigate } from 'react-router-dom'
+import { EuiInMemoryTable, EuiIcon } from '@elastic/eui'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const Table = ({ json }) => {
-  const navigate = useNavigate()
+  const rowsPerPage = 25
+  const sizes = new Map([
+    ['s', '5%'],
+    ['l', '20%'],
+  ])
   const columns = [
     {
       field: 'id',
       name: 'ID',
       truncateText: true,
-      width: '5%',
+      width: sizes.get('s'),
     },
     {
       field: 'postId',
       name: 'Post ID',
       truncateText: true,
-      width: '5%',
+      width: sizes.get('s'),
     },
     {
       field: 'name',
@@ -27,7 +31,7 @@ const Table = ({ json }) => {
       field: 'email',
       name: 'Email',
       truncateText: true,
-      width: '20%',
+      width: sizes.get('l'),
     },
     {
       field: 'body',
@@ -38,16 +42,19 @@ const Table = ({ json }) => {
       field: 'id',
       name: 'Link',
       render: (id) => (
-        <EuiLink onClick={() => navigate(`/articles/${id}`)} target='_blank'>
+        // <EuiLink onClick={() => navigate(`/articles/${id}`)} target='_blank'>
+        //   <EuiIcon type='symlink' />
+        // </EuiLink>
+        <Link to={`/articles/${id}`}>
           <EuiIcon type='symlink' />
-        </EuiLink>
+        </Link>
       ),
-      width: '5%',
+      width: sizes.get('s'),
     },
   ]
 
   const pagination = {
-    initialPageSize: 25,
+    initialPageSize: rowsPerPage,
     showPerPageOptions: false,
   }
 

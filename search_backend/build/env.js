@@ -80,7 +80,7 @@ window.env = {
   "SystemRoot": "C:\\WINDOWS",
   "TEMP": "C:\\Users\\shado\\AppData\\Local\\Temp",
   "TERMINAL_EMULATOR": "JetBrains-JediTerm",
-  "TERM_SESSION_ID": "fea08408-1962-43ac-beee-b288d95ce8c7",
+  "TERM_SESSION_ID": "1a62d046-aeb5-4e6d-b8a4-9cc46f75fbc4",
   "TMP": "C:\\Users\\shado\\AppData\\Local\\Temp",
   "USERDOMAIN": "SHADOWPC",
   "USERDOMAIN_ROAMINGPROFILE": "SHADOWPC",

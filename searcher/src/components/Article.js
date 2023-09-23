@@ -9,9 +9,9 @@ const Article = ({ uuid }) => {
 
   useEffect(() => {
     getJson(setData, `${env.BACKEND_URI}api/articles/${uuid}`)
-  }, [])
+  }, [uuid])
   return (
-    <>
+    <div className='Article'>
       {data && (
         <>
           <EuiTitle size='l'>
@@ -27,7 +27,7 @@ const Article = ({ uuid }) => {
           </EuiText>
         </>
       )}
-    </>
+    </div>
   )
 }
 

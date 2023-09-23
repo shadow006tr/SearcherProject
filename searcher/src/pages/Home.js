@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Switch from '../components/Switch'
-import { EuiPanel, useGeneratedHtmlId, EuiLoadingSpinner } from '@elastic/eui'
+import { useGeneratedHtmlId, EuiLoadingSpinner, EuiSpacer } from '@elastic/eui'
 import TextBox from '../components/TextBox'
 import Table from '../components/Table'
 import getJson from '../utils/getJson'
-import baseUrl from '../utils/baseUrl'
+import env from 'react-dotenv'
 
 const Home = () => {
   const basicButtonGroupPrefix = useGeneratedHtmlId({
@@ -15,7 +15,9 @@ const Home = () => {
   const [json, setJson] = useState([])
 
   useEffect(() => {
-    getJson(setJson, baseUrl).then(() => setIsLoading(false))
+    getJson(setJson, `${env.BACKEND_URI}api/articles/`).then(() =>
+      setIsLoading(false)
+    )
   }, [])
   return (
     <>
@@ -24,15 +26,14 @@ const Home = () => {
         mode={mode}
         setMode={setMode}
       />
-      <EuiPanel className='BasePanel'>
-        {isLoading ? (
-          <EuiLoadingSpinner className='Spinner' size='xl' />
-        ) : mode === `${basicButtonGroupPrefix}__0` ? (
-          <TextBox json={json} />
-        ) : (
-          <Table json={json} />
-        )}
-      </EuiPanel>
+      <EuiSpacer size='xl' />
+      {isLoading ? (
+        <EuiLoadingSpinner className='Spinner' size='xl' />
+      ) : mode === `${basicButtonGroupPrefix}__0` ? (
+        <TextBox key='TextBox' json={json} />
+      ) : (
+        <Table key='Table' json={json} />
+      )}
     </>
   )
 }

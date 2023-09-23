@@ -1,12 +1,10 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { EuiPanel } from '@elastic/eui'
 import Article from '../components/Article'
+import { useParams } from 'react-router-dom'
 
-const ArticlePage = () => (
-  <EuiPanel className='BasePanel'>
-    <Article uuid={useParams().uuid} />
-  </EuiPanel>
-)
+const ArticlePage = () => {
+  let params = useParams()
+  return <Article uuid={params.uuid} />
+}
 
 export default ArticlePage
